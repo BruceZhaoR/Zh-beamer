@@ -5,17 +5,28 @@ date: "2015年10月18日"
 output: beamer_presentation
 ---
 
-## 我要生成中文
+## 测试中文
 
 This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
 
 When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
 
-## Slide with Bullets
 
-- Bullet 1
-- Bullet 2
-- Bullet 3
+## 环境要求
+
+既然你要生成中文的PDF,想必你已经安装了`MikTex`,如果你装了Rstudio,那么你一定也装了`pandoc`. 测试环境变量中是否有`pandoc`,只需Windows Cmd (win+R -> cmd ->Enter)中运行 `pandoc -v` .
+
+## 生成步骤
+
+1. 下载这个文件夹
+2. 打开 `test.Rmd`
+3. 按下 <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> (knit PDF)
+4. 耐心等待渲染,然后看看生成的结果.
+
+你可以在 `knit PDF` 的旁边, `Output Options` 里面自定义主题; 或者你可以直接修改`_output.yaml`里面的 theme 和 fonttheme.
+
+*如果你碰到了问题请提交issue*,**请务必附上报错的信息啊!**
+
 
 ## Slide with R Code and Output
 
