@@ -1,0 +1,6 @@
+beamer_presentation: 
+  pandoc_args: "--latex-engine=xelatex"
+  template: beamer_default.tex
+  theme: Warsaw
+  fonttheme: professionalfonts
+  highlight: pygments

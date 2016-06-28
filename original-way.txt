@@ -1,0 +1,29 @@
+1. go to ` https://github.com/jgm/pandoc-templates/blob/master/default.beamer ` copy and save as default.tex
+
+2. add `\usepackage{ctex}` into default.tex here:
+
+	% the begining %
+	\setbeamertemplate{caption}[numbered]
+	\setbeamertemplate{caption label separator}{: }
+	\setbeamercolor{caption name}{fg=normal text.fg}
+	\usepackage{amssymb,amsmath}
+add here 		... 
+	\usepackage{ctex}
+		...
+	\ifxetex
+	...
+
+3. open Rmarkdown 
+---
+title: "Untitled"
+author: "BruceZhao"
+date: "2015Äê10ÔÂ12ÈÕ"
+output: 
+  beamer_presentation: 
+    keep_tex: yes
+    pandoc_args: "--latex-engine=xelatex"
+    template: beamer_default.tex
+---
+4. Ctrl + Shift + K (knit PDF) 
+
+5. See what generated

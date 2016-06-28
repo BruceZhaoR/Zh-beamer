@@ -1,0 +1,8 @@
+_site/
+.sass-cache/
+.jekyll-metadata
+.Rproj.user
+TODO.md
+.imdone/
+.Rhistory
+.RData
