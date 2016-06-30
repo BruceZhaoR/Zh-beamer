@@ -1,7 +1,8 @@
 ---
 title: "R Markdown 生成中文Beamer教程"
 author: "Bruce Zhao"
-date: "2015年10月18日"
+date: "2016年06月30日"
+fontsize: 10pt
 output: beamer_presentation
 ---
 
@@ -28,15 +29,17 @@ When you click the **Knit** button a document will be generated that includes bo
 *如果你碰到了问题请提交issue*,**请务必附上报错的信息啊!**
 
 
-## Slide with R Code and Output
+## 代码与图
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(dev = 'pdf')
+library(ggplot2)
+```
 
 ```{r}
-summary(cars)
+ggplot(diamonds, aes(carat, price,colour=cut)) +
+    geom_point(alpha = 1/3) + stat_smooth()
 ```
 
-## Slide with Plot
 
-```{r, echo=FALSE}
-plot(cars)
-```
 
