@@ -1,12 +1,14 @@
 # Zh-beamer
 
-Create Chinese beamer PDF PowerPoint with `rmarkdown` on Windows.
+Create Chinese Beamer & PDF with `rmarkdown` on Windows.
 
 ## Requirement
 
 Must have installed `MikTex 2.9` and `pandoc 1.15`. To test whether have installed `pandoc` ,just run `pandoc -v` in the Windows Cmd (win+R -> cmd ->Enter).
 
 ## Usage
+
+### For Chinese Beamer:
 
 1. download this repository
 2. open the `test.Rmd`
@@ -21,14 +23,28 @@ You can also customise the beamer theme in the `Output Options`, which next to `
 
 *If you encounter a problem, please don't hesitate to creat an issue.* **You'd better print the error info.**
 
-Here are the snapshots:
+[Beamer.pdf](https://rawgit.com/BruceZhaoR/Zh-beamer/master/test.pdf),Here are the snapshots:
 
-![img1](/beamer/beamer1.png)
 ![img2](/beamer/beamer2.png)
 ![img3](/beamer/beamer3.png)
 ![img4](/beamer/beamer4.png)
 
-[test.pdf](https://rawgit.com/BruceZhaoR/Zh-beamer/master/test.pdf)
+### For Chinese PDF
+
+1. the Rmd file is in the `Chinese-PDF` fold
+2. open the `code.Rmd`
+3. press <kbd>Ctrl</kbd> + <kbd>Shift</kbd> + <kbd>K</kbd> (knit PDF)
+4. you will encounter `43` error.
+
+**Notice:** it's because that your MikTex lacks some related packages. So you need to open the `default.latex` and the `MikTex Packages Manager` to download the packages that are used in the `default.latex`.
+
+I don't know how many times I have tried, but it worked at last. *Good luck, my friend!*
+
+[Chinese.pdf](https://rawgit.com/BruceZhaoR/Zh-beamer/master/Chinese-PDF/非参数统计第一次作业题目.pdf), Here are the snapshots:
+
+![img1](/Chinese-PDF/1.png)
+![img2](/Chinese-PDF/2.png)
+![img3](/Chinese-PDF/3.png)
 
 ## License
 

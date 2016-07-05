@@ -1,0 +1,148 @@
+---
+title: "在R Markdown文档中使用中文"
+author: "Bruce Zhao"
+date: "`r Sys.Date()`"
+documentclass: ctexart
+output:
+  pdf_document:
+    fig_caption: yes
+    highlight: espresso
+    keep_tex: yes
+    latex_engine: xelatex
+    number_sections: yes
+    template: default.latex
+    toc: yes
+classoption: "hyperref,"
+---
+
+---    
+
+# 习题一
+
+## $\S$计算数值积分  
+
+Rcode:
+
+```{r,collapse=TRUE}
+fun<- function(t) 2*cos(t) + 3*sin(2*t)
+integrate(fun, 0,1)
+```
+
+结果
+
+$$\therefore \int_0^1 \left( 2cos(t) + 3sin(2t) \right) \,dt  = `r integrate(fun, 0, 1)[1]` $$
+
+# 习题二
+
+## $\S$方法1（最简单）
+
+采用R内置函数`polyroot`,具体用法请输入`?polyroot`.用于求解 $\mathbf{0} = f(x) = z_1 + z_2x + ... + z_n x^{n-1}$ 的根.此题 $\mathbf{0} = 2 + 5x + x^2$,所以Rcode及结果如下：
+
+```{r,collapse=TRUE}
+z<-c(2,5,1)
+polyroot(z)
+```
+
+这样就很轻松的解决了一元多次方程求根的问题了。
+
+## $\S$方法2（编写函数）
+
+编写函数的原理是一元二次方程 $$x^2 + 5x + 2 = \mathbf{0}$$ 的通解为 $$ x_{1,2} = \frac{-b \pm \sqrt{b^2 - 4ac}}{2a}.$$ 但是要考虑到$b^2 - 4ac < 0$ 的情况，所以如果要让函数具有通用性，需要将其转化为复数然后再带入公式计算。据此，R代码及结果如下：
+
+```{r,collapse=TRUE}
+f1 <- function(a,b,c) {
+  if(a>0){
+  a<- a + 0i;b<- b+0i;c<- c+0i #转化为复数
+  x1 <- (-b + sqrt(b^2 - 4*a*c))/2*a #一个根
+  x2 <- (-b - sqrt(b^2 - 4*a*c))/2*a #另外一个根
+  print(paste("x1 =",x1))
+  print(paste("x2 =",x2))
+  }
+else stop("a must > 0") # 题目设置 a >0.
+}
+
+f1(1,5,2)
+```
+
+两种方法结果一致。
+
+
+# 习题三
+
+## $\S$公式法
+
+等比数列求和公式：$$ S_n = \frac{1-x^n}{1-x} ,x \ne 1 $$
+$$ S_n = n , x = 1 .$$ 所以根据这个原理编写运算公式如下：
+
+```{r,collapse=TRUE}
+f3 <- function(x,n){
+  if(x == 1){
+    paste("hn =",n)
+  }
+  else {
+    Sn <- (1 - x^(n+1))/(1 - x)
+    paste("hn =",Sn)
+  }
+}
+f3(2,5)
+```
+
+
+## $\S$迭代编程法
+
+```{r,collapse=TRUE}
+h <- function(x,n){
+  y = 1
+  for (i in 1:n){
+    y <- y + x^i
+  }
+  paste("hn =",y)
+}
+h(2,5)
+```
+
+这两种方法在数据少的情况都可以，但是一旦 n 变的很大的时候，第二种的迭代方法就会变的效率低下。一般不轻易使用`for`循环。
+
+# 习题四
+
+## $\S$解题过程
+
+设客户为随机变量$\mathbf{X}$，则$\mathbf{X} \sim B(n,0.1)$.$E(X) = np$,$Var(X) = np(1-p)$.依题意得：
+$$ P(X > n \times 12\%)  =  P \left( \frac{X-E(X)}{\sqrt{Var(X)}} > \frac{n \times 12\% - E(X)}{\sqrt{Var(X)}} \right) $$ 
+$$ =\int_{\frac{n \times 12\% - E(X)}{\sqrt{Var(X)}}}^{+\infty}f(x)dx $$
+$$ = 1 - \int_{-\infty}^{\frac{n \times 12\% - E(X)}{\sqrt{Var(X)}}}f(x)dx $$
+$$ = 1 - pnrom( \frac{n \times 12\% - E(X)}{\sqrt{Var(X)}} ) $$
+$$ = `r 1 - pnorm((250*0.12 - 25) / sqrt(250 * 0.1 * 0.9))` $$
+
+## $\S$Rcode:
+```{r,collapse=TRUE}
+1 - pnorm((250*0.12 - 25) / sqrt(250 * 0.1 * 0.9))
+```
+
+所以保单里超过12%的客户至少有一次索赔的概率是`r 1 - pnorm((250*0.12 - 25) / sqrt(250 * 0.1 * 0.9))`.
+
+# 习题五
+
+## $\S$ 解题过程
+
+$$ \because \bar{x} \sim N(\mu,\sigma^2/n),\therefore \frac{\sqrt{n}(\bar{x} - \mu)}{\sigma} \sim N(0,1) $$    
+
+
+$$ p\left( u_{\alpha /2} \leqslant \frac{\sqrt{n}(\bar{x} - u)}{\sigma} \leqslant u_{1-\frac{\alpha}{2}} \right) = 1 - \alpha $$   
+
+$$ \therefore \bar{\mu_L} = \bar{x} - u_{1-\frac{\alpha}{2}} \sigma / \sqrt{n} ,\bar{\mu_U} = \bar{x} + u_{1-\frac{\alpha}{2}} \sigma / \sqrt{n} $$
+
+
+## $\S$Rcode:
+
+```{r,collapse=TRUE}
+x <- c(32.56,29.66,31.64,30.00,31.87,31.03)
+n <-length(x)
+x_bar <- mean(x)
+u <- qnorm(0.975)
+sigma <- 1.1
+(mu_L <- x_bar - u *sigma/sqrt(n))
+(mu_U <- x_bar + u *sigma/sqrt(n))
+```
+
+所以，$\mu$的95%的置信区间为：$[ `r mu_L`, `r mu_U` ]$.
