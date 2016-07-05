@@ -40,7 +40,7 @@ You can also customise the beamer theme in the `Output Options`, which next to `
 
 I don't know how many times I have tried, but it worked at last. *Good luck, my friend!*
 
-[Chinese.pdf](https://rawgit.com/BruceZhaoR/Zh-beamer/master/Chinese-PDF/非参数统计第一次作业题目.pdf), Here are the snapshots:
+[Chinese.pdf](https://github.com/BruceZhaoR/Zh-beamer/tree/master/Chinese-PDF), Here are the snapshots:
 
 ![img1](/Chinese-PDF/1.png)
 ![img2](/Chinese-PDF/2.png)
