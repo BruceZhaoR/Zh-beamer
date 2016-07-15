@@ -8,6 +8,9 @@ Must have installed `MikTex 2.9` and `pandoc 1.15`. To test whether have install
 
 ## Usage
 
+- [Chinese Beamer](#for-chinese-beamer)
+- [Chinese PDF](#for-chinese-pdf)
+
 ### For Chinese Beamer:
 
 1. download this repository
