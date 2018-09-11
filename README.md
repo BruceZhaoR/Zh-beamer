@@ -4,7 +4,9 @@ Create Chinese Beamer & PDF with `rmarkdown` on Windows.
 
 ## Requirement
 
-Must have installed `MikTex 2.9` and `pandoc 1.15`. To test whether have installed `pandoc` ,just run `pandoc -v` in the Windows Cmd (win+R -> cmd ->Enter).
+~~Must have installed `MikTex 2.9` and `pandoc 1.15`. To test whether have installed `pandoc` ,just run `pandoc -v` in the Windows Cmd (win+R -> cmd ->Enter).
+
+- tinytex: <https://yihui.name/tinytex/>
 
 ## Usage
 
